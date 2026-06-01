@@ -1,0 +1,99 @@
+{
+    // =========================================================================
+    // Common VS Code Settings for UMCU RWE Team
+    // =========================================================================
+    // 1. LANGUAGE INDENTATION & FORMATTING
+    // =========================================================================
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false, //stop inferring indentation settings from the current file.
+    "editor.wordWrap": "on",
+    "editor.rulers": [
+        80,
+        100
+    ],
+    "editor.bracketPairColorization.enabled": true, // highlights matching brackets in same colour
+    "editor.stickyScroll.enabled": true, // sticks current function at top of editor when scrolling down
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true, // Use spaces for indentation
+    "workbench.editor.enablePreview": true, //Shreya doesn't like it
+    "editor.showFoldingControls": "always",
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": true, //default is true
+    // -- R --
+    "[r]": {
+        "editor.tabSize": 2, // tidyverse style
+        "editor.formatOnPaste": true,
+        "editor.defaultFormatter": "REditorSupport.r",
+        "editor.formatOnType": true,
+        "editor.semanticHighlighting.enabled": false
+    },
+    // -- SQL --
+    "[sql]": {
+        "editor.wordWrap": "off",
+        "editor.snippetSuggestions": "top",
+        "editor.tabSize": 4
+    },
+    // -- Markdown --
+    "[markdown]": {
+        "editor.formatOnSave": true
+    },
+    // -- json --
+    "[json]": {
+        "editor.formatOnSave": true
+    },
+    // =========================================================================
+    // 2. FILE HYGIENE
+    // =========================================================================
+    // "files.autoSave": "afterDelay", // It auto-saves your file as you write it
+    // "files.autoSaveDelay": 1000 // 1k millisecond is default
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    // Treat non-standard extensions correctly
+    "files.associations": {
+        "renv.lock": "json",
+        "*.Rprofile": "r",
+        "*.rmd": "rmd" //it's a tautology and we are happy about it
+    },
+    // =========================================================================
+    // 3. R LANGUAGE FEATURES
+    // =========================================================================
+    // Use httpgd for plots: displays plots inside VSCode like RStudio's Plots pane.
+    // Install R package: install.packages("httpgd")
+    "r.plot.useHttpgd": true,
+    // Language Server: enables smart completion, hover docs,
+    // go-to-definition, linting.
+    // Install R package: install.packages("languageserver")
+    "r.lsp.enabled": true,
+    "r.lsp.diagnostics": true,
+    // Show R session in the sidebar (workspace viewer, like RStudio's Environment pane)
+    "r.sessionWatcher": true,
+    // This tell vscode where to find R on your system. In this case is the default location but for some reason is giving you an errror. Now all seems to work.
+    "r.rpath.mac": "/Library/Frameworks/R.framework/Resources/bin/R",
+    // =========================================================================
+    // 4. DATA FILE VIEWERS
+    // =========================================================================
+    // Opens data files in dedicated viewers instead of the plain text editor
+    "workbench.editorAssociations": {
+        "*.parquet": "parquetExplorer.explorer",
+        "*.csv": "cweijan.officeViewer",
+        "*.xlsx": "cweijan.officeViewer",
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.rds": "rdsViewer.editor"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "terminal.integrated.suggest.enabled": true,
+    "terminal.integrated.shellIntegration.enabled": true,
+    "files.trimTrailingWhitespace": true,
+    "git.openRepositoryInParentFolders": "never",
+    "vscode-office.openOutline": true,
+    // "vscode-office.editorTheme": "Dracula",
+    "terminal.integrated.initialHint": false,
+    // "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "GitHub Dark Default",
+    // "workbench.colorTheme": "Dark 2026",
+    // "workbench.colorTheme": "Classic Ace Cobalt",
+    "claudeCode.preferredLocation": "panel",
+    "chat.viewSessions.orientation": "stacked"
+    // "workbench.colorTheme": "Dracula Theme Soft",
+}
