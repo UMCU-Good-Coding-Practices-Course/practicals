@@ -15,7 +15,7 @@
     "editor.stickyScroll.enabled": true, // sticks current function at top of editor when scrolling down
     "editor.formatOnSave": true,
     "editor.insertSpaces": true, // Use spaces for indentation
-    "workbench.editor.enablePreview": true, //Shreya doesn't like it
+    "workbench.editor.enablePreview": true, //
     "editor.showFoldingControls": "always",
     "explorer.confirmDelete": false,
     "editor.minimap.enabled": true, //default is true
