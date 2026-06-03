@@ -124,6 +124,7 @@ regions$risk_level <- ifelse(
 print(regions)
 ```
 
+### Python solution
 ```{python}
 import logging
 
@@ -142,6 +143,7 @@ reports = [
 
 
 def calculate_incidence(cases, population, location):
+    """Compute incidence per 100k people"""
     logging.info("Calculating incidence for location: %s", location)
 
     if cases < 0:
@@ -184,14 +186,48 @@ def classify_risk(incidence, location):
         return "low"
 
 
-for report in reports:
-    incidence = calculate_incidence(
-        report["cases"],
-        report["population"],
-        report["location"]
-    )
+if __name__ == "__main__":
+    for report in reports:
+        incidence = calculate_incidence(
+            report["cases"],
+            report["population"],
+            report["location"]
+        )
+    
+        risk = classify_risk(incidence, report["location"])
+    
+        print(report["location"] + ": " + risk + " risk")
+```
 
-    risk = classify_risk(incidence, report["location"])
+## Exercise 3
+### R solution
 
-    print(report["location"] + ": " + risk + " risk")
+### Python solution
+You can find an example solution in the folder `solution_example`. 
+It contains two files, one for which the test fails (`my_file_bad.py`) and one for which it passes (`my_file.py`).
+
+```
+day3/
+├── my_file.py  # where you placed your code
+│
+├── tests/
+│   ├── __init__.py
+│   └── test_my_file.py
+```
+
+```{python}
+# File: tests/test_my_file.py
+
+from my_file import calculate_incidence, classify_risk
+
+def test_calculate_incidence():
+    assert calculate_incidence(5, 1e6) == 0.5
+    assert calculate_incidence(0, 1) == 0
+    assert calculate_incidence(0, 0) is None
+
+def test_classify_risk():
+    assert classify_risk(None) == "unknown"
+    assert classify_risk(5) == "low"
+    assert classify_risk(50) == "low"
+    assert classify_risk(100) == "high" 
 ```
