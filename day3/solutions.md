@@ -202,12 +202,59 @@ if __name__ == "__main__":
 ## Exercise 3
 ### R solution
 
+**TODO**
+* Classify risk is not implemented as a function at the moment.
+* use devtools instead of testthat?
+
+You can find an example R solution `solution_test_R`
+
+
+```
+<project_folder>/
+├── my_file.R  # where you placed your code
+│
+└── tests/
+    └── testthat/
+        └── test-my_file.R
+```
+
+```{r}
+install.packages("devtools")
+install.packages("testthat")
+````
+
+
+```{r}
+# File: tests/testthat/test-my_file.R
+
+source("my_file.R")
+
+test_that("calculate_incidence works", {
+  expect_equal(calculate_incidence(5, 1e6), 0.5)
+  expect_equal(calculate_incidence(0, 1), 0)
+  expect_true(is.na(calculate_incidence(0, 0)))
+})
+
+test_that("classify_risk works", {
+  expect_equal(classify_risk(NA_real_), "unknown")
+  expect_equal(classify_risk(5), "low")
+  expect_equal(classify_risk(50), "low")
+  expect_equal(classify_risk(100), "high")
+})
+```
+
+Run tests from `<project_folder>` with:
+
+```{r}
+testthat::test_dir("tests/testthat")
+```
+
 ### Python solution
-You can find an example solution in the folder `solution_example`. 
+You can find an example solution in the folder `solution_test_python`. 
 It contains two files, one for which the test fails (`my_file_bad.py`) and one for which it passes (`my_file.py`).
 
 ```
-day3/
+<project_folder>/
 ├── my_file.py  # where you placed your code
 │
 ├── tests/
