@@ -3,6 +3,8 @@
 ### R solution
 
 ```{R}
+# Debugging exercise: incidence rates by region
+
 regions <- data.frame(
   region = c("North", "South", "East", "West"),
   cases = c(120, 85, 0, 200),
@@ -13,22 +15,18 @@ calculate_incidence <- function(cases, population) {
   if (population == 0) {
     return(NA)
   }
-
   rate <- cases / population * 100000
   return(rate)
 }
 
-regions$incidence_rate <- mapply(
-  calculate_incidence,
-  regions$cases,
-  regions$population
-)
+classify_risk <- function(rate) {
+  risk_level <- ifelse(rate > 50, "high", "low")
 
-regions$risk_level <- ifelse(
-  regions$incidence_rate > 50,
-  "high",
-  "low"
-)
+  return(risk_level)
+}
+
+regions$incidence_rate <- mapply(calculate_incidence, regions$cases, regions$population)
+regions$risk <- classify_risk(regions$incidence_rate)
 
 print(regions)
 ```
@@ -80,46 +78,41 @@ regions <- data.frame(
   population = c(500000, 250000, 0, 800000)
 )
 
-calculate_incidence <- function(cases, population, region) {
-  message("Calculating incidence for region: ", region)
+calculate_incidence <- function(cases, population) {
+  message("Calculating incidence")
 
   if (cases < 0) {
-    stop("Cases cannot be negative in region: ", region)
+    stop("Cases cannot be negative")
   }
 
   if (population < 0) {
-    stop("Population cannot be negative in region: ", region)
+    stop("Population cannot be negative")
   }
 
   if (population == 0) {
-    warning("Population is zero in region: ", region, 
-            ". Incidence rate cannot be calculated.")
+    warning("Population is zero. Incidence rate cannot be calculated.")
     return(NA)
   }
 
   if (cases == 0) {
-    message("No cases reported in region: ", region)
+    message("No cases reported in region")
   }
 
   rate <- cases / population * 100000
 
-  message("Incidence rate for ", region, " is ", round(rate, 2))
+  message("Incidence rate for is ", round(rate, 2))
 
   return(rate)
 }
 
-regions$incidence_rate <- mapply(
-  calculate_incidence,
-  regions$cases,
-  regions$population,
-  regions$region
-)
+classify_risk <- function(rate) {
+  risk_level <- ifelse(rate > 50, "high", "low")
 
-regions$risk_level <- ifelse(
-  is.na(regions$incidence_rate),
-  "unknown",
-  ifelse(regions$incidence_rate > 50, "high", "low")
-)
+  return(risk_level)
+}
+
+regions$incidence_rate <- mapply(calculate_incidence, regions$cases)
+regions$risk <- classify_risk(regions$incidence_rate)
 
 print(regions)
 ```
@@ -202,10 +195,6 @@ if __name__ == "__main__":
 ## Exercise 3
 ### R solution
 
-**TODO**
-* Classify risk is not implemented as a function at the moment.
-* use devtools instead of testthat?
-
 You can find an example R solution `solution_test_R`
 
 
@@ -227,20 +216,22 @@ install.packages("testthat")
 ```{r}
 # File: tests/testthat/test-my_file.R
 
-source("my_file.R")
+source("../../my_file.R")
 
 test_that("calculate_incidence works", {
   expect_equal(calculate_incidence(5, 1e6), 0.5)
   expect_equal(calculate_incidence(0, 1), 0)
-  expect_true(is.na(calculate_incidence(0, 0)))
+  expect_warning(result <- calculate_incidence(0, 0), "Population is zero. Incidence rate cannot be calculated.")
+  expect_true(is.na(result))
 })
 
 test_that("classify_risk works", {
-  expect_equal(classify_risk(NA_real_), "unknown")
+  expect_equal(classify_risk(NA_real_), NA)
   expect_equal(classify_risk(5), "low")
   expect_equal(classify_risk(50), "low")
   expect_equal(classify_risk(100), "high")
 })
+
 ```
 
 Run tests from `<project_folder>` with:
@@ -248,6 +239,8 @@ Run tests from `<project_folder>` with:
 ```{r}
 testthat::test_dir("tests/testthat")
 ```
+
+Or open the test file and press "Run Tests"
 
 ### Python solution
 You can find an example solution in the folder `solution_test_python`. 
