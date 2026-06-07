@@ -5,7 +5,7 @@ With `renv`:
 - package versions are recorded in a lockfile
 - the same environment can be recreated later
 
-## 3. Install `renv`
+## Install `renv`
 
 Run this once if `renv` is not installed yet.
 
@@ -14,22 +14,21 @@ install.packages("renv")
 ```
 
 
+
 Then load it:
 
 ```{r load-renv, eval=FALSE}
 library(renv)
 ```
 
-
----
-
-## 4. Create a new project environment
+## Create a new project environment
 
 Move into your R project folder in RStudio or in your working directory, then initialize `renv`.
 
 ```{r renv-init, eval=FALSE}
 renv::init()
 ```
+
 
 What this does:
 
@@ -39,7 +38,7 @@ What this does:
 
 After this step, your project is managed independently from your global R library.
 
-## 5. Install packages inside the project
+## Install packages inside the project
 
 Now install the packages your project needs.
 
@@ -47,6 +46,7 @@ Now install the packages your project needs.
 install.packages("dplyr")
 install.packages("ggplot2")
 ```
+
 
 
 Because `renv` is active, these packages are tracked for this project.
@@ -57,13 +57,15 @@ You can check project status with:
 renv::status()
 ```
 
-## 6. Save the environment
+
+## Save the environment
 
 Once your project packages are installed, save the environment state.
 
 ```{r renv-snapshot, eval=FALSE}
 renv::snapshot()
 ```
+
 
 This updates the `renv.lock` file.
 
@@ -73,7 +75,7 @@ The lockfile records information such as:
 - package versions
 - repository sources
 
-## 7. Restore the environment later
+## Restore the environment later
 
 To recreate the same environment in the future or on another machine:
 
@@ -81,11 +83,12 @@ To recreate the same environment in the future or on another machine:
 renv::restore()
 ```
 
+
 This reads the `renv.lock` file and reinstalls the recorded package versions.
 
 This is the main step that makes collaboration and reproducibility much easier.
 
-## 8. Typical project workflow
+## Typical project workflow
 
 A common `renv` workflow looks like this:
 
@@ -105,7 +108,8 @@ renv::snapshot()
 renv::restore()
 ```
 
-## 9. Files to keep in version control
+
+## Files to keep in version control
 
 For a reproducible R project, you should usually commit:
 
@@ -119,7 +123,8 @@ This allows another person to clone the project and run:
 renv::restore()
 ```
 
-## 10. Common mistakes to avoid
+
+## Common mistakes to avoid
 
 Avoid these mistakes:
 
@@ -129,7 +134,7 @@ Avoid these mistakes:
 - deleting `renv.lock`
 - assuming your collaborator has the same package versions
 
-## 11. Small exercise 1
+## Small exercise
 
 Create a new R project and do the following:
 
@@ -141,4 +146,16 @@ Create a new R project and do the following:
 
 ```{r exercise-restore, eval=FALSE}
 renv::restore()
+```
+
+# Linting and Styling
+Check locally if your code respects coding style and lintings
+
+```{r}
+lints <- lintr::lint_package()
+print(lints)
+```
+
+```{r}
+styler::style_pkg(dry = "on")
 ```
