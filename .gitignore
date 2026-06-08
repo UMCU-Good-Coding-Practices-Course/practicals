@@ -1,0 +1,10 @@
+*.egg-info
+__pycache__/
+dist/
+build/
+*.egg
+*.pyc
+*.pyo
+*.pyd
+
+uv.lock

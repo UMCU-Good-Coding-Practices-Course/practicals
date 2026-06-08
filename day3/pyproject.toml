@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "day3_practical"
+version = "1.0.0"
+description = "Exercise for day 3: debugging and testing"
+requires-python = ">=3.11"
+dependencies = [
+    "pytest>=8.0.1",
+]
+
+[tool.setuptools]
+py-modules = ["my_file"]
+package-dir = {"" = "solution_test_python"}
