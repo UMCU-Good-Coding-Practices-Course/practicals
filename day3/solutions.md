@@ -2,7 +2,7 @@
 
 ### R solution
 
-```{R}
+```r
 # Debugging exercise: incidence rates by region
 
 regions <- data.frame(
@@ -33,7 +33,7 @@ print(regions)
 
 ### Python solution
 
-```{python}
+```python
 reports = [
     {"location": "North", "cases": 120, "population": 500000},
     {"location": "South", "cases": 85, "population": 250000},
@@ -71,7 +71,7 @@ for report in reports:
 
 ### R solution
 
-```{R}
+```r
 regions <- data.frame(
   region = c("North", "South", "East", "West"),
   cases = c(120, 85, 0, 200),
@@ -100,7 +100,7 @@ calculate_incidence <- function(cases, population) {
 
   rate <- cases / population * 100000
 
-  message("Incidence rate for is ", round(rate, 2))
+  message("Incidence rate is ", round(rate, 2))
 
   return(rate)
 }
@@ -111,14 +111,14 @@ classify_risk <- function(rate) {
   return(risk_level)
 }
 
-regions$incidence_rate <- mapply(calculate_incidence, regions$cases)
+regions$incidence_rate <- mapply(calculate_incidence, regions$cases, regions$population)
 regions$risk <- classify_risk(regions$incidence_rate)
 
 print(regions)
 ```
 
 ### Python solution
-```{python}
+```python
 import logging
 
 logging.basicConfig(
@@ -207,13 +207,13 @@ You can find an example R solution `solution_test_R`
         └── test-my_file.R
 ```
 
-```{r}
+```r
 install.packages("devtools")
 install.packages("testthat")
-````
+```
 
 
-```{r}
+```r
 # File: tests/testthat/test-my_file.R
 
 source("../../my_file.R")
@@ -226,7 +226,7 @@ test_that("calculate_incidence works", {
 })
 
 test_that("classify_risk works", {
-  expect_equal(classify_risk(NA_real_), NA)
+  expect_equal(classify_risk(NA_real_), NA_character_)
   expect_equal(classify_risk(5), "low")
   expect_equal(classify_risk(50), "low")
   expect_equal(classify_risk(100), "high")
@@ -236,7 +236,7 @@ test_that("classify_risk works", {
 
 Run tests from `<project_folder>` with:
 
-```{r}
+```r
 testthat::test_dir("tests/testthat")
 ```
 
@@ -244,7 +244,6 @@ Or open the test file and press "Run Tests"
 
 ### Python solution
 You can find an example solution in the folder `solution_test_python`. 
-It contains two files, one for which the test fails (`my_file_bad.py`) and one for which it passes (`my_file.py`).
 
 ```
 <project_folder>/
@@ -255,19 +254,19 @@ It contains two files, one for which the test fails (`my_file_bad.py`) and one f
 │   └── test_my_file.py
 ```
 
-```{python}
+```python
 # File: tests/test_my_file.py
 
 from my_file import calculate_incidence, classify_risk
 
 def test_calculate_incidence():
-    assert calculate_incidence(5, 1e6) == 0.5
-    assert calculate_incidence(0, 1) == 0
-    assert calculate_incidence(0, 0) is None
+    assert calculate_incidence(5, 1e6, 'area51') == 0.5
+    assert calculate_incidence(0, 1, 'area51') == 0
+    assert calculate_incidence(0, 0, 'area51') is None
 
 def test_classify_risk():
-    assert classify_risk(None) == "unknown"
-    assert classify_risk(5) == "low"
-    assert classify_risk(50) == "low"
-    assert classify_risk(100) == "high" 
+    assert classify_risk(None, 'area51') == "unknown"
+    assert classify_risk(5,'area51') == "low"
+    assert classify_risk(50, 'area51') == "low"
+    assert classify_risk(100, 'area51') == "high" 
 ```

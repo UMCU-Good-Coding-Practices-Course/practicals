@@ -8,7 +8,7 @@ Where does the code break and what should you fix, to make the code work again?
 
 ### R code
 
-```{R}
+```r
 # Debugging exercise: incidence rates by region
 
 regions <- data.frame(
@@ -40,7 +40,7 @@ print(regions)
 
 ### Python code
 
-```{python}
+```python
 # Debugging exercise: outbreak report
 
 reports = [
@@ -81,6 +81,7 @@ Write the log lines to a file (requires a third party package in R)
 ## Exercise 3 - Testing
 
 Write unit tests for the functions in the previous code. Add those to a separate folder called tests. Make sure all tests succeed and all functions are tested.
+Try to add errors to your code after you've written the tests. Do the tests still succeed?
 
 ## Exercise 4 - Writing efficient code
 
@@ -89,7 +90,9 @@ Again pick whichever language your prefer
 
 ### 4.1 Vectorization
 
-```{R}
+#### R Example
+
+```r
 # Vectorized vs non-vectorized code
 
 x <- 1:1000000
@@ -116,7 +119,9 @@ time_vectorized
 all.equal(y_loop, y_vectorized)
 ```
 
-```{python}
+#### Python example
+
+```python
 import numpy as np
 import time
 
@@ -151,7 +156,9 @@ print("Same answers:", np.allclose(y_loop, y_vectorized))
 
 ### 4.2 Caching intermediate files
 
-```{R}
+#### R Example
+
+```r
 # Example: using an intermediate CSV file to avoid repeating a slow step
 
 raw_data <- data.frame(
@@ -207,7 +214,9 @@ mean_age
 number_smokers
 ```
 
-```{python}
+#### Python example
+
+```python
 # Example: using an intermediate CSV file to avoid repeating a slow step
 
 import pandas as pd

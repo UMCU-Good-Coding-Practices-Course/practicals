@@ -8,7 +8,7 @@ test_that("calculate_incidence works", {
 })
 
 test_that("classify_risk works", {
-  expect_equal(classify_risk(NA_real_), NA)
+  expect_equal(classify_risk(NA_real_), NA_character_)
   expect_equal(classify_risk(5), "low")
   expect_equal(classify_risk(50), "low")
   expect_equal(classify_risk(100), "high")

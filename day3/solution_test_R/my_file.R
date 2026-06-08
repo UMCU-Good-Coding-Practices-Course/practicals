@@ -26,7 +26,7 @@ calculate_incidence <- function(cases, population) {
 
   rate <- cases / population * 100000
 
-  message("Incidence rate for is ", round(rate, 2))
+  message("Incidence rate is ", round(rate, 2))
 
   return(rate)
 }
