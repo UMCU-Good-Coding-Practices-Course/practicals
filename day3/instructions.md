@@ -86,7 +86,7 @@ Try to add errors to your code after you've written the tests. Do the tests stil
 ## Exercise 4 - Writing efficient code
 
 For the last exercise we're going to time different code snippets to see how much faster they run. Run the code below to see the runtime differences and write down the runtime and reason why code runs faster.
-Again pick whichever language your prefer
+Again pick whichever language you prefer.
 
 ### 4.1 Vectorization
 

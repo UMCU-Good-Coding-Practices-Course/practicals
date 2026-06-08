@@ -12,4 +12,5 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["solution_test_python"]
+py-modules = ["my_file"]
+package-dir = {"" = "solution_test_python"}

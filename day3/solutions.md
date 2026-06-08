@@ -121,12 +121,6 @@ print(regions)
 ```python
 import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(levelname)s: %(message)s"
-)
-
-
 reports = [
     {"location": "North", "cases": 120, "population": 500000},
     {"location": "South", "cases": 85, "population": 250000},
@@ -180,6 +174,8 @@ def classify_risk(incidence, location):
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+
     for report in reports:
         incidence = calculate_incidence(
             report["cases"],

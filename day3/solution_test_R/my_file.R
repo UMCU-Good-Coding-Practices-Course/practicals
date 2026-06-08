@@ -36,8 +36,3 @@ classify_risk <- function(rate) {
 
   return(risk_level)
 }
-
-regions$incidence_rate <- mapply(calculate_incidence, regions$cases, regions$population)
-regions$risk <- classify_risk(regions$incidence_rate)
-
-print(regions)
