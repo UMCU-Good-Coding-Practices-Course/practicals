@@ -1,9 +1,6 @@
 import logging
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(levelname)s: %(message)s"
-)
+logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 
 
 reports = [
@@ -29,7 +26,7 @@ def calculate_incidence(cases, population, location):
     if population == 0:
         logging.warning(
             "Population is zero in location: %s. Incidence cannot be calculated.",
-            location
+            location,
         )
         return None
 
@@ -57,12 +54,11 @@ def classify_risk(incidence, location):
         logging.info("Risk level for %s is low", location)
         return "low"
 
+
 if __name__ == "__main__":
     for report in reports:
         incidence = calculate_incidence(
-            report["cases"],
-            report["population"],
-            report["location"]
+            report["cases"], report["population"], report["location"]
         )
 
         risk = classify_risk(incidence, report["location"])
