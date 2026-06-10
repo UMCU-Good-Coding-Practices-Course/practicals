@@ -8,6 +8,14 @@ Where does the code break and what should you fix, to make the code work again?
 
 ### R code
 
+*Note*: if you want to run the R debugger in VS Code you have to install the extension `R Debugger` and the R package (not on CRAN) [`vscDebugger`](https://github.com/ManuelHentschel/vscDebugger).
+
+```
+install.packages("vscDebugger", repos = "https://manuelhentschel.r-universe.dev")
+```
+
+
+
 ```r
 # Debugging exercise: incidence rates by region
 
